@@ -280,6 +280,7 @@ class CoxnetSurvivalAnalysis(BaseEstimator, SurvivalAnalysisMixin):
         self
         """
         X, event_num, time, X_offset, X_scale = self._pre_fit(X, y)
+        X = np.squeeze(X, axis=-1)
         create_path, alphas, penalty, alpha_min_ratio = self._check_params(*X.shape)
 
         coef, alphas, deviance_ratio, n_iter = call_fit_coxnet(
